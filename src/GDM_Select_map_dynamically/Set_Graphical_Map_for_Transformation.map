@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="default" version="8.0.5.0" xmlns:map="default">
+    <input path="mbsharedlib://SharedLib_Select_Map_Dynamically/CustomerOrdersPerStore.xsd"/>
+    <output path="mbsharedlib://SharedLib_Select_Map_Dynamically/CustomerOrdersPerStore.xsd"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="io" uri="http://gdm/schema/models"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="Set_Graphical_Map_for_Transformation">
+        <input namespace="http://gdm/schema/models" path="mb:msg(CustomerOrdersPerStore,assembly,XMLNSC,LocalEnvironment)"/>
+        <output namespace="http://gdm/schema/models" path="mb:msg(CustomerOrdersPerStore,assembly,XMLNSC,LocalEnvironment)"/>
+        <local>
+            <input path="LocalEnvironment" var="LocalEnvironment"/>
+            <input auxiliary="true" path="CustomerOrdersPerStore/StoreCode" var="StoreCode"/>
+            <output path="LocalEnvironment"/>
+            <move>
+                <input path="$LocalEnvironment/." var="LocalEnvironment1"/>
+                <output path="."/>
+                <override>
+                    <expression>
+                        <input path="$StoreCode/." var="StoreCode"/>
+                        <output path="Mapping/MappingRoutine"/>
+                        <code lang="xpath">if ($StoreCode = 1 ) then &#13;
+    '{maps}:Map1'&#13;
+ else &#13;
+    if  ($StoreCode = 2) then  &#13;
+        '{maps}:Map2'&#13;
+      else &#13;
+        '{default}:GDM_Transformation_when_mapping_routine_not_set_dynamically'</code>
+                    </expression>
+                </override>
+            </move>
+        </local>
+        <move>
+            <input path="CustomerOrdersPerStore" var="CustomerOrdersPerStore"/>
+            <output path="CustomerOrdersPerStore"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>

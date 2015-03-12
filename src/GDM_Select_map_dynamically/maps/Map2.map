@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot xmlns="http://www.ibm.com/2008/ccl/Mapping" domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="true" targetNamespace="maps" version="8.0.5.0" xmlns:map="maps">
+    <inlinedXMLSchema><![CDATA[<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">       
+                          <xsd:element name="Date" nillable="true" type="xsd:string"/> 
+    <xsd:element name="MapName" nillable="true" type="xsd:string"/>     
+    <xsd:element name="StoreCode" nillable="true" type="xsd:string"/>     
+</xsd:schema>]]></inlinedXMLSchema>
+    <input inlinedXMLSchema="true" path="../schema_0.xsd" var="var2"/>
+    <input path="mbsharedlib://SharedLib_Select_Map_Dynamically/CustomerOrdersPerStore.xsd" var="var3"/>
+    <output path="jar:file://!com/ibm/etools/mft/map/xsds/predefined/JsonDomainMsg.xsd" var="var"/>
+    <namespaces>
+        <namespace kind="supplement" prefix="io" uri="http://gdm/schema/models"/>
+        <namespace kind="supplement" prefix="out" uri="http://www.ibm.com/iib/msl/json"/>
+        <namespace kind="extension" prefix="fn" uri="http://www.w3.org/2005/xpath-functions"/>
+    </namespaces>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="Map2">
+        <input namespace="http://gdm/schema/models" path="$var3/mb:msg(CustomerOrdersPerStore,assembly,XMLNSC,LocalEnvironment,Properties)"/>
+        <output namespace="http://www.ibm.com/iib/msl/json" path="$var/mb:msg(JSON,assembly,JSON,Properties)">
+            <cast castType="userDefined" path="JSON/Data/type('anyType')" qualifier="{http://www.ibm.com/iib/msl/json}JSONObject" ref="var"/>
+            <cast castType="userDefined" path="JSON/spath('Data',2)/any" qualifier="StoreCode" ref="var2"/>
+            <cast castType="userDefined" path="JSON/spath('Data',2)/any" qualifier="MapName" ref="var2"/>
+            <cast castType="userDefined" path="JSON/spath('Data',2)/any" qualifier="Date" ref="var2"/>
+        </output>
+        <move>
+            <input path="Properties"/>
+            <output path="Properties"/>
+            <override>
+                <assign value="">
+                    <output path="Properties/MessageSet"/>
+                </assign>
+                <assign value="">
+                    <output path="Properties/MessageType"/>
+                </assign>
+                <assign value="">
+                    <output path="Properties/MessageFormat"/>
+                </assign>
+            </override>
+        </move>
+        <move>
+            <input path="LocalEnvironment/Mapping/MappingRoutine"/>
+            <output path="JSON/spath('Data',2)/MapName"/>
+        </move>
+        <move>
+            <input path="CustomerOrdersPerStore/StoreCode"/>
+            <output path="JSON/spath('Data',2)/StoreCode"/>
+        </move>
+        <move>
+            <input path="CustomerOrdersPerStore/Date"/>
+            <output path="JSON/spath('Data',2)/Date"/>
+        </move>
+    </mappingDeclaration>
+</mappingRoot>
