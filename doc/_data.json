@@ -1,0 +1,209 @@
+{
+  "version":"0.4",
+  "pageContent":{
+    "comments":"Must use underscore for en-us.",
+    "navItems":{
+      "_common":{
+        "buttonBackToGallery":{
+          "text":"Back To Gallery"
+        },
+        "buttonStartTutorial":{
+          "text":"Start Tutorial"
+        }
+      }
+    }
+  },
+  "tutorial":{
+    "_common":{
+      "name":"Dynamically select a message map (graphical data map) that is used by a Mapping node in an integration solution",
+      "shortDescription":"Learn how to choose different message maps at run time based on data in the message.",
+      "durationText":"This tutorial takes approximately",
+      "durationTime":"10 minutes",
+      "_resourceToOpenComment":"The ID of the first resource to open when the user imports the tutorial. Resource IDs are defined in the repo_metadata.json Tutorials listing on ot4i.",
+      "resourceToOpen":"MainFlow"
+    },
+    "pageDetails":{
+      "topicsName":"Tutorial Topics",
+      "_topicListComment":"A short list of product concepts or tasks demonstrated by this tutorial",
+      "topicList":[	  
+        {
+          "title":"Using the Graphical Data Mapping editor"
+        }, 
+		{
+          "title":"Dynamically selecting the transformation logic in an integration solution"
+        }     
+      ],
+      "outcomesName":"Learning outcomes",
+      "_outcomesComment":"A description of what the user will have learned or accomplished by running this tutorial.",
+      "outcomeList":[
+        {
+          "title":"Use the Graphical Data Mapping editor capabilities in IBM Integration Bus to select the transformation logic that is required in your solution at run time."
+        }
+      ],
+      "summary":{
+        "overviewName":"OVERVIEW",
+        "_overviewComment":"A short description of what happens in this tutorial, and an optional short explanation of the IIB concepts used in this tutorial if necessary for context. What background knowledge must the user have for this to make sense?",
+        "sections":[
+          {
+		    "section":"This tutorial demonstrates how to select a message map (also known as a graphical data map), at run time, based on information passed as part of the input XML message. "
+		  }
+        ]
+      }
+    },
+    "pageSteps":{
+      "concept":{
+        "overview":{
+          "name":"Overview",
+          "heading":"Overview",
+          "_overviewComment":"A short description of what this tutorial does, and what the user will do to run the tutorial.",
+          "sections":[
+            {
+              "section":"This tutorial demonstrates how to create an integration solution where the transformation logic that is required at run time is determined by information passed in the input message."
+            },
+			{
+              "section":"The first Mapping node is used to define the logic that datermines which message map to apply at run time based on information coming in the input message."
+            },
+            {
+              "section":"The second Mapping node is used to model the default graphical data transformation step in the solution."
+            },
+			{
+			  "section":"Each mapping node has associated a message map, also known as a graphical data map."
+			},
+            {
+              "section":"The message map is the resource that you use to graphically define and implement the transformation requirements."
+            }
+          ]
+        },
+        "helpLinks":{
+          "title":"Find out more",
+          "details":[
+            {
+              "title":"Knowledge Center link to ",
+              "description":"Developing integration solutions by using applications",
+              "link":"com.ibm.etools.mft.doc/bi12002_.htm"
+            },
+			{
+              "title":"Knowledge Center link to ",
+              "description":"Transforming messages by using the Graphical Data Mapping editor",
+              "link":"com.ibm.etools.mft.doc/br28800_.htm"
+            },
+			{
+              "title":"Knowledge Center link to ",
+              "description":"Message map",
+              "link":"com.ibm.etools.mft.doc/br28802_.htm"
+            },
+			{
+              "title":"Knowledge Center link to ",
+              "description":"Mapping Node",
+              "link":"com.ibm.etools.mft.doc/bc28600_.htm"
+            }
+          ]
+        }
+      },
+      "create":{
+        "overview":{
+          "name":"Create ",
+          "heading":"Import files",
+          "_createComment":"A description of what will happen when the user clicks Import.",
+          "sections":[
+            {
+              "section":"Click Import to add the solution to your IBM Integration Toolkit workspace."
+            },
+			{
+			  "section":"A shared library project and an application project are added in the Application Development view of your IBM Integration Toolkit workspace. These two projects contain all the development and test resources that you need to implement and run this solution."
+			}
+          ]
+        },
+        "helpLinks":{
+          "title":"Find out more",
+          "details":[
+            {
+              "title":"Knowledge Center link to ",
+              "description":"Integration Development perspective",
+              "link":"com.ibm.etools.mft.doc/ab00040_.htm"
+            }
+          ]
+        },
+        "actionName":"Import"
+      },
+	  "prepare":{
+        "overview":{
+          "name":"Prepare",
+          "heading":"Prepare",
+          "_prepareComment":"A description of what just happened when the user clicked Import, and what will happen when the user clicks Deploy.",
+          "sections":[
+            {
+              "section":"Click <b>Deploy</b> to deliver the solution from the development environment to the local test environment."
+            },
+            {
+              "section":"Create the input directory c:\\iib\\in in your file system. This directory matches the directory that is monitored by the FileInput node."
+            },
+            {
+              "section":"Create the output directory c:\\iib\\out in your file system. This directory matches the directory that is monitored by the FileOutput node."
+            }
+          ]
+        },
+        "helpLinks":{
+          "title":"Find out more",
+          "details":[
+            {
+              "title":"Knowledge Center link to ",
+              "description":"Integration Nodes view",
+              "link":"com.ibm.etools.mft.doc/bb10600_.htm"
+            }
+          ]
+        },
+        "actionName":"Deploy"
+      },
+	    "run":{
+        "cleanupName":"Clean up",
+        "cleanupDescription":"Clean up and remove any changes made by the tutorial.",
+        "overview":{
+          "name":"Run",
+          "heading":"Test the solution",
+          "_runComment":"The full steps for the user to run through the tutorial. Use 'sections' to render paragraphs, 'steps' with a type of 'ordered' or 'unordered' to render HTML lists, and 'substeps' to render nested lists.",
+          "sections":[
+		     {
+              "section":"The GDM_Select_map_dynamically application is shown in the Application Development view of your workspace.",
+              "steps":{
+                "type":"ordered",
+                "details":[
+                  {
+                    "details":"Open the Select_Graphical_Map_Dynamically.msgflow, and click the Flow Exerciser icon <img src='http://ot4i.github.io/ot4i.tutorials/dist/images/icons/iib/startFlowExerciser.png' alt='flow exerciser icon' /> to start recording the message path through the flow."
+                  },
+                  {
+				    "details":"Copy the XML message <b>Test_Message_to_set_Default_Map.xml</b> into the c:\\IIB\\in directory to test that the default map is applied. The message is available in the GDM_Select_map_dynamically project, within the section <b>Other Resources</b>."
+				  },
+                  {
+				    "details":"Copy the XML message <b>Test_Message_to_set_Map1.xml</b> into the c:\\IIB\\in directory to test that map1 is applied. The message is available in the GDM_Select_map_dynamically project, within the section <b>Other Resources</b>."
+				  },
+                  {
+				    "details":"Copy the XML message <b>Test_Message_to_set_Map2.xml</b> into the c:\\IIB\\in directory to test that map2 is applied. The message is available in the GDM_Select_map_dynamically project, within the section <b>Other Resources</b>."
+				  }
+                ]
+              }
+            },
+			{
+              "section":"After each request message is processed, the message path is automatically highlighted on the message flow."
+            }
+          ]
+        },
+        "helpLinks":{
+          "title":"Find out more",
+          "details":[
+            {
+              "title":"Knowledge Center link to ",
+              "description":"Testing your message flow by using the Flow exerciser",
+              "link":"com.ibm.etools.mft.doc/rt26110_.htm"
+            },
+			{
+              "title":"Knowledge Center link to ",
+              "description":"Developing integration solutions by using applications",
+              "link":"com.ibm.etools.mft.doc/bi12002_.htm"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
